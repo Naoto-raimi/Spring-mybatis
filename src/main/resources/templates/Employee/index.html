@@ -8,11 +8,11 @@
 </head>
 <body>
     <h1>社員一覧</h1>
-    <form action="index.html" th:action="@{findBynameLike}">
+    <form action="index.html" th:action="@{findByNameLike}">
         名前のキーワード：<input type="text" name="keyword">
         <input type="submit" value="キーワード検索">
     </form>
-    <a href="insertMain.html" th:action="@{insertMain}">新規追加へ</a>
+    <a href="insertMain.html" th:href="@{insertMain}">新規追加へ</a>
     <table border="1">
         <tr>
             <th>ID</th>
