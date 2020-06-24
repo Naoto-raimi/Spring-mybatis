@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>一覧画面</title>
+    <link rel="stylesheet" href="../../static/css/style.css"
+        th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>社員一覧</h1>
+    <form action="index.html" th:action="@{findBynameLike}">
+        名前のキーワード：<input type="text" name="keyword">
+        <input type="submit" value="キーワード検索">
+    </form>
+    <a href="insertMain.html" th:action="@{insertMain}">新規追加へ</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>氏名</th>
+            <th>入社年月日</th>
+            <th>部署ID</th>
+            <th>部署名</th>
+        </tr>
+        <tr th:each="employee : ${employeeList}" th:object="${employee}">
+            <td th:text="*{id}">id</td>
+            <td th:text="*{name}">id</td>
+            <td th:text="*{#temporals.format(joinedDate, 'uuuu-MM-dd')}">id</td>
+            <td th:text="*{departmentId}">id</td>
+            <td th:text="*{departmentName}">id</td>
+        </tr>
+    </table>
+</body>
+</html>
