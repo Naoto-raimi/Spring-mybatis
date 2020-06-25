@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thtmeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>一覧画面</title>
@@ -8,6 +9,9 @@
 </head>
 <body>
     <h1>社員一覧</h1>
+    <p sec:authorize="authenticated">
+        <span sec:authentication="principal.username">dummy</span>さんログイン中
+    </p>
     <form action="index.html" th:action="@{findByNameLike}">
         名前のキーワード：<input type="text" name="keyword">
         <input type="submit" value="キーワード検索">
@@ -29,5 +33,9 @@
             <td th:text="*{departmentName}">id</td>
         </tr>
     </table>
+    <br>
+    <form method="post" action="index.html" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
+    </form>
 </body>
 </html>

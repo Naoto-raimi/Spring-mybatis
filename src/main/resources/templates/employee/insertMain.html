@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thtmeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>新規追加画面</title>
@@ -8,6 +9,9 @@
 </head>
 <body>
     <h1>新規追加</h1>
+    <p sec:authorize="authenticated">
+        <span sec:authentication="principal.username">dummy</span>さんログイン中
+    </p>
     <a href="index.html" th:href="@{index}">社員一覧へ</a>
     <form method="post" action="index.html" th:action="@{insertComplete}">
         <table border="1">
@@ -35,6 +39,10 @@
             </tr>
         </table>
         <input type="submit" value="登録">
+    </form>
+    <br>
+    <form method="post" action="index.html" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
     </form>
 </body>
 </html>
