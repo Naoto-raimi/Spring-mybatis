@@ -11,10 +11,10 @@ public class EmployeeForm {
     @DateTimeFormat(pattern = "uuuu-MM-dd")
     private LocalDate joinedDate;
 
-    private Integer departmentID;
+    private Integer departmentId;
 
     public Employee convertToEntity(){
-        return new Employee(name, joinedDate, departmentID);
+        return new Employee(name, joinedDate, departmentId);
     }
 
     public String getName() {
@@ -33,11 +33,11 @@ public class EmployeeForm {
         this.joinedDate = joinedDate;
     }
 
-    public Integer getDepartmentID() {
-        return departmentID;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartmentID(Integer departmentID) {
-        this.departmentID = departmentID;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 }
