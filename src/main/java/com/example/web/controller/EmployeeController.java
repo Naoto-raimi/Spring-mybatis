@@ -5,6 +5,8 @@ import com.example.service.EmployeeService;
 import com.example.web.form.EmployeeForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,12 +38,17 @@ public class EmployeeController {
     }
 
     @GetMapping("/insertMain")
-    public String insertMain(){
+    public String insertMain(Model model){
+        model.addAttribute("employeeForm", new EmployeeForm());
         return "employee/insertMain";
     }
 
     @PostMapping("/insertComplete")
-    public String insertComplete(EmployeeForm employeeForm){
+    public String insertComplete(@Validated EmployeeForm employeeForm,
+                                 BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            return "employee/insertMain";
+        }
         Employee employee = employeeForm.convertToEntity();
         employeeService.insert(employee);
         return "redirect:index";
